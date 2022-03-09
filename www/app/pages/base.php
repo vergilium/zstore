@@ -103,9 +103,9 @@ class Base extends \Zippy\Html\WebPage
         $this->_tvars["note"] = $_config['modules']['note'] == 1;
         $this->_tvars["issue"] = $_config['modules']['issue'] == 1;
 
-        $this->_tvars["ppo"] = $_config['modules']['ppo'] == 1;
-        $this->_tvars["np"] = $_config['modules']['np'] == 1;
-        $this->_tvars["promua"] = $_config['modules']['promua'] == 1;
+        $this->_tvars["ppo"] = false;
+        $this->_tvars["np"] = false;
+        $this->_tvars["promua"] = false;
 
 
         //доступы к  модулям
@@ -125,38 +125,20 @@ class Base extends \Zippy\Html\WebPage
             $this->_tvars["woocomerce"] = false;
         }
   
-        if (strpos(System::getUser()->modules, 'ppo') === false && System::getUser()->rolename != 'admins') {
-            $this->_tvars["ppo"] = false;
-        }
-        if (strpos(System::getUser()->modules, 'np') === false && System::getUser()->rolename != 'admins') {
-            $this->_tvars["np"] = false;
-        }
-        if (strpos(System::getUser()->modules, 'promua') === false && System::getUser()->rolename != 'admins') {
-            $this->_tvars["promua"] = false;
-        }
+ 
 
         if ($this->_tvars["shop"] ||
             $this->_tvars["ocstore"] ||
             $this->_tvars["woocomerce"] ||
             $this->_tvars["note"] ||
-            $this->_tvars["issue"] ||
-            $this->_tvars["promua"] ||
-            $this->_tvars["ppo"] ||
-            $this->_tvars["np"]
+            $this->_tvars["issue"]  
         ) {
             $this->_tvars["showmodmenu"] = true;
         } else {
             $this->_tvars["showmodmenu"] = false;
         }
 
-        if ($this->_tvars["isadmins"]) {  //для  роли админов  видные все  разделы  меню
-            $this->_tvars["showdocmenu"] = true;
-            $this->_tvars["showrepmenu"] = true;
-            $this->_tvars["showregmenu"] = true;
-            $this->_tvars["showrefmenu"] = true;
-            $this->_tvars["showsermenu"] = true;
-            $this->_tvars["showmodmenu"] = true;
-        }
+ 
 
         //скрыть  боковое  меню
         $this->_tvars["hidesidebar"] = $user->hidesidebar == 1 ? 'hold-transition   sidebar-collapse' : 'hold-transition sidebar-mini sidebar-collapse';
