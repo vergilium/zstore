@@ -341,7 +341,7 @@ class ARMFood extends \App\Pages\Base
     //категории
     public function onCatRow($row) {
         $cat = $row->getDataItem();
-        $row->add(new ClickLink('catbtn'))->onClick($this, 'onCatBtnClick');
+        $row->add(new Panel('catbtn'))->onClick($this, 'onCatBtnClick');
         $row->catbtn->add(new Label('catname', $cat->cat_name));
         $row->catbtn->add(new Image('catimage', "/loadimage.php?id=" . $cat->image_id));
     }
