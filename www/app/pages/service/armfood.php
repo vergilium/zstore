@@ -352,7 +352,7 @@ class ARMFood extends \App\Pages\Base
 
         $prod = $row->getDataItem();
         $prod->price = $prod->getPrice($this->_pricetype, $this->_store);
-        $row->add(new ClickLink('prodbtn'))->onClick($this, 'onProdBtnClick');
+        $row->add(new Panel('prodbtn'))->onClick($this, 'onProdBtnClick');
         $row->prodbtn->add(new Label('prodname', $prod->itemname));
         $row->prodbtn->add(new Label('prodprice', H::fa($prod->price)));
         $row->prodbtn->add(new Image('prodimage', "/loadimage.php?id=" . $prod->image_id));
